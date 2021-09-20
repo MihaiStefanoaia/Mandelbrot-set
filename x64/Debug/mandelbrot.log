@@ -1,0 +1,21 @@
+﻿  complexNumber.cpp
+  main.cpp
+H:\git stuff\Mandelbrot set\HSVtoRGB.h(13,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+H:\git stuff\Mandelbrot set\HSVtoRGB.h(35,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+H:\git stuff\Mandelbrot set\HSVtoRGB.h(36,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+H:\git stuff\Mandelbrot set\HSVtoRGB.h(37,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+H:\git stuff\Mandelbrot set\main.cpp(70,37): warning C4244: 'argument': conversion from 'T' to 'unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+H:\git stuff\Mandelbrot set\main.cpp(70,23): warning C4244: 'argument': conversion from 'T' to 'unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+H:\git stuff\Mandelbrot set\main.cpp(84,25): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+H:\git stuff\Mandelbrot set\main.cpp(84,22): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+H:\git stuff\Mandelbrot set\main.cpp(104,45): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
+  mandelbrot.vcxproj -> H:\git stuff\Mandelbrot set\x64\Debug\mandelbrot.exe

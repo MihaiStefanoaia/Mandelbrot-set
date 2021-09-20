@@ -1,0 +1,1 @@
+H:\git stuff\Mandelbrot set\x64\Debug\mandelbrot.exe
