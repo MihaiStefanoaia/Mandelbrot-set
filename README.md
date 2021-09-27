@@ -4,12 +4,22 @@
 
 ### How to use:
 
-> input the x and y coordinates of the center point of the scene you want to render
-> input the range of the camera (zoom level in a way) - it will render the mandelbrot set from point (x-range, y-range) to (x+range, y+range)
-> input the resolution of the image to be rendered
-> let it do it's thing
+- use the arrow keys or WASD to move the camera
+
+- use the '+' and '-' keys to zoom in and zoom out respectively (both the numpad and the number row keys work)
+
+- wait for the program to render and display the frame (might take a few seconds)
+
+### Notes:
+
+- The resolution has been lowered significantly in order to allow this to run in an even remotely interactive way
+
+- the program is prone to crashing and rendering artifacts. I have been working on fixing them, and so far have been moderately successful
 
 ### To be done:
-> switch the brute force computation from the CPU to the GPU (probably with CUDA)
-> allow real time camera controls (zoom in/out, move around)
-> generally optimise the program to run better 
+
+- switch the brute force computation from the CPU to the GPU (probably with CUDA or OpenCL) | for now managed to get CPU multithreading to work using OpenMP
+
+- add a high resolution saving menu for the current view
+
+- generally optimize the program to run better 
