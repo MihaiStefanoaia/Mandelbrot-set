@@ -8,6 +8,8 @@
 
 - use the '+' and '-' keys to zoom in and zoom out respectively (both the numpad and the number row keys work)
 
+- press 'P' in order to save the current viewport at a selected resolution (check the console for further instructions) | the renderer will fit the image inside the viewport and will cut out the excess (check the examples folder) - keep in mind if you are rendering at a different aspect ratio than 1:1
+
 - wait for the program to render and display the frame (might take a few seconds)
 
 ### Notes:
@@ -20,6 +22,6 @@
 
 - switch the brute force computation from the CPU to the GPU (probably with CUDA or OpenCL) | for now managed to get CPU multithreading to work using OpenMP
 
-- add a high resolution saving menu for the current view
+- add a proper GUI for the saving menu
 
 - generally optimize the program to run better 

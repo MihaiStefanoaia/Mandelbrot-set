@@ -29,5 +29,8 @@
     <ClInclude Include="HSVtoRGB.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="compute.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

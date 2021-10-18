@@ -1,11 +1,12 @@
 #include <SFML/Graphics.hpp>
 #include "HSVtoRGB.h"
 #include "complexNumber.h"
+#include "compute.h"
 #include <iostream>
 #include <list>
 #include <omp.h>
-#define MAX_ITERATIONS 255
-#define OUT_OF_BOUNDS 8.0f
+
+
 
 void fitSpriteToWindow(sf::Sprite& sprite, sf::Window& window) //sets scale of the sprite to fit perfectly inside the screen
 {
@@ -16,34 +17,7 @@ void fitSpriteToWindow(sf::Sprite& sprite, sf::Window& window) //sets scale of t
 	sprite.setScale(scl);
 }
 
-bool isOutOfBounds(complexNumber c)
-{
-	if (abs(c.realPart) > OUT_OF_BOUNDS || abs(c.imaginaryPart) > OUT_OF_BOUNDS)
-		return true;
-	else return false;
-}
 
-complexNumber mandelbrotSetIteration(complexNumber z, complexNumber c)
-{
-	return z * z + c;
-}
-
-unsigned short int mandelbrotSet(complexNumber c) ///returns 0 if c is part of the mandelbrot set, or otherwise, the number of iterations the point took to get out of bounds
-{
-
-	complexNumber z(0,0);
-	int it = 0;
-	while (it < MAX_ITERATIONS)
-	{
-
-
-		if (isOutOfBounds(z))
-			return it;
-		z = mandelbrotSetIteration(z,c);
-		it++;
-	}
-	return 0;
-}
 
 
 int main()
@@ -84,7 +58,7 @@ int main()
 
 	sf::Vector2f origin(canvasSize/2.0f);
 
-	omp_set_num_threads(4);
+	omp_set_num_threads(6);
 
 	bool needsUpdate = true;
 	
@@ -96,13 +70,14 @@ int main()
 		{
 		case sf::Event::Closed:
 		{
+			/*
 			std::string filename("outputs/Mandelbrot Set");
 			filename += std::to_string((int)canvasSize.x);
 			filename += "x";
 			filename += std::to_string((int)canvasSize.y);
 			filename += ".png";
 			tex.getTexture().copyToImage().saveToFile(filename);
-
+			*/
 			window.close();
 			break;
 		}
@@ -144,69 +119,52 @@ int main()
 				center.y -= (range / 10);
 				needsUpdate = true;
 			}
+
+			if (evnt.text.unicode == 15)//save
+			{
+				std::string confirm;
+				std::cout << "Do you want to render point (" << center.x << " , " << center.y << ") with range " << range << "? (Y/N)\n";
+				std::getline(std::cin, confirm);
+
+				if (confirm == "Y" || confirm == "y")
+				{
+					sf::Vector2f resolution;
+					std::cout << "Select the resolution at which you want to render\nx: ";
+					std::cin >> resolution.x;
+					std::cout << "y: ";
+					std::cin >> resolution.y;
+					
+					sf::RectangleShape bkg(resolution);
+					bkg.setFillColor(sf::Color(0, 0, 0, 255));
+
+					sf::RenderTexture save;
+					save.create((int)resolution.x, (int)resolution.y);
+					save.draw(bkg);
+					save.display();
+
+					computeImage(center, range, resolution, save, true);
+
+					std::string filename("outputs/");
+					filename += "center_(";
+					filename += std::to_string(center.x);
+					filename += "_,_";
+					filename += std::to_string(center.y);
+					filename += ")_range_";
+					filename += std::to_string(range);
+					filename += ".png";
+					save.getTexture().copyToImage().saveToFile(filename);
+
+				}
+
+			}
 			break;
 		}
 		}
 
 		if (needsUpdate)
 		{
-			bool* order = new bool[omp_get_num_threads() + 1] {false};
-			order[0] = true;
-#pragma omp parallel
-			{
-				unsigned short int threadNum = omp_get_thread_num();
-				sf::RenderTexture tmpTexture;
-				tmpTexture.create(canvasSize.x, canvasSize.y);
-#pragma omp for
-				for (int i = 0; i < (int)canvasSize.x; i++)
-				{
-					//std::cout << i << std::endl;
-					for (int j = 0; j < (int)canvasSize.y; j++)
-					{
-
-
-						complexNumber c(center.x, center.y);
-
-						c.realPart += ((2 * i - canvasSize.x) / canvasSize.x) * range;
-						c.imaginaryPart += ((2 * j - canvasSize.y) / canvasSize.y) * range;
-						int res = mandelbrotSet(c);
-
-
-						sf::Vector3i color;
-						sf::RectangleShape pixel(sf::Vector2f(1.0f, 1.0f));
-						pixel.setPosition(i, j);
-
-
-						if (res == 0)
-							color = sf::Vector3i(0, 0, 0);
-						else
-							color = HSVtoRGB(((res + 225) % 90) * 4 + (res + 225) % 4, 80, 100);
-
-						pixel.setFillColor(sf::Color(color.x, color.y, color.z, 255));
-						tmpTexture.draw(pixel);
-					}
-
-				}
-				std::cout << "thread " << threadNum << "done processing\n";
-
-				while (true)
-				{
-					if (order[threadNum] == true)
-					{
-						//std::cout << "drawing: thread " << threadNum << "\n";
-						sf::Sprite tmp(tmpTexture.getTexture());
-						tex.draw(tmp);
-						order[threadNum + 1] = true;
-						//std::cout << order[threadNum + 1] << '\n';
-						std::cout << "done drawing: thread " << threadNum << "\n";
-						break;
-					}
-				}
-				
-				
-			}
+			computeImage(center, range, canvasSize, tex);
 			needsUpdate = false;
-
 		}
 
 		window.draw(sprite);

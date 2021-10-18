@@ -4,12 +4,12 @@
 
 class complexNumber {
 public:
-	double realPart;
-	double imaginaryPart;
+	float realPart;
+	float imaginaryPart;
 
 public:
 
-	complexNumber(double real=0, double imaginary=0);
+	complexNumber(float real=0, float imaginary=0);
 	complexNumber(const complexNumber& a);
 
 	std::string printable();

@@ -1,6 +1,6 @@
 #include "complexNumber.h"
 
-complexNumber::complexNumber(double real, double imaginary)
+complexNumber::complexNumber(float real, float imaginary)
 {
 	this->realPart = real;
 	this->imaginaryPart = imaginary;
@@ -15,14 +15,14 @@ complexNumber::complexNumber(const complexNumber& a)
 std::string complexNumber::printable()
 {
 	std::string tmp;
-	tmp = std::to_string(this->realPart) + " + " + std::to_string(this->imaginaryPart) + "i\n";
+	tmp = std::to_string(this->realPart) + " + " + std::to_string(this->imaginaryPart) + "i";
 
 	return tmp;
 }
 
 std::ostream& operator<<(std::ostream& os, complexNumber const& nr)
 {
-	os << std::string(std::to_string(nr.realPart) + " + " + std::to_string(nr.imaginaryPart) + "i\n");
+	os << std::string(std::to_string(nr.realPart) + " + " + std::to_string(nr.imaginaryPart) + "i");
 	return os;
 }
 
