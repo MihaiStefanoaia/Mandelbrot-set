@@ -21,6 +21,15 @@
     <ClCompile Include="complexNumber.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="button.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="textInput.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="textBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="complexNumber.h">
@@ -30,6 +39,18 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="compute.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="button.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="textInput.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="startRenderer.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="textBox.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

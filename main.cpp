@@ -1,10 +1,8 @@
 #include <SFML/Graphics.hpp>
-#include "HSVtoRGB.h"
-#include "complexNumber.h"
 #include "compute.h"
+#include "startRenderer.h"
 #include <iostream>
 #include <list>
-#include <omp.h>
 
 
 
@@ -70,14 +68,6 @@ int main()
 		{
 		case sf::Event::Closed:
 		{
-			/*
-			std::string filename("outputs/Mandelbrot Set");
-			filename += std::to_string((int)canvasSize.x);
-			filename += "x";
-			filename += std::to_string((int)canvasSize.y);
-			filename += ".png";
-			tex.getTexture().copyToImage().saveToFile(filename);
-			*/
 			window.close();
 			break;
 		}
@@ -122,40 +112,12 @@ int main()
 
 			if (evnt.text.unicode == 15)//save
 			{
-				std::string confirm;
-				std::cout << "Do you want to render point (" << center.x << " , " << center.y << ") with range " << range << "? (Y/N)\n";
-				std::getline(std::cin, confirm);
+				startRenderer(center, range, 6);
+			}
 
-				if (confirm == "Y" || confirm == "y")
-				{
-					sf::Vector2f resolution;
-					std::cout << "Select the resolution at which you want to render\nx: ";
-					std::cin >> resolution.x;
-					std::cout << "y: ";
-					std::cin >> resolution.y;
-					
-					sf::RectangleShape bkg(resolution);
-					bkg.setFillColor(sf::Color(0, 0, 0, 255));
-
-					sf::RenderTexture save;
-					save.create((int)resolution.x, (int)resolution.y);
-					save.draw(bkg);
-					save.display();
-
-					computeImage(center, range, resolution, save, true);
-
-					std::string filename("outputs/");
-					filename += "center_(";
-					filename += std::to_string(center.x);
-					filename += "_,_";
-					filename += std::to_string(center.y);
-					filename += ")_range_";
-					filename += std::to_string(range);
-					filename += ".png";
-					save.getTexture().copyToImage().saveToFile(filename);
-
-				}
-
+			if (evnt.text.unicode == 23)//exit
+			{
+				window.close();
 			}
 			break;
 		}
@@ -163,7 +125,7 @@ int main()
 
 		if (needsUpdate)
 		{
-			computeImage(center, range, canvasSize, tex);
+			computeImage(center, range, canvasSize, tex, 6);
 			needsUpdate = false;
 		}
 

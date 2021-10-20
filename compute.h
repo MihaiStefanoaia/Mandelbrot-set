@@ -1,4 +1,5 @@
 #pragma once
+#include <SFML/Graphics.hpp>
 #include "HSVtoRGB.h"
 #include "complexNumber.h"
 #include <omp.h>
@@ -13,11 +14,6 @@ bool isOutOfBounds(complexNumber c)
 	else return false;
 }
 
-complexNumber mandelbrotSetIteration(complexNumber z, complexNumber c)
-{
-	return z * z + c;
-}
-
 unsigned short int mandelbrotSet(complexNumber c) ///returns 0 if c is part of the mandelbrot set, or otherwise, the number of iterations the point took to get out of bounds
 {
 
@@ -25,22 +21,20 @@ unsigned short int mandelbrotSet(complexNumber c) ///returns 0 if c is part of t
 	int it = 0;
 	while (it < MAX_ITERATIONS)
 	{
-
-
 		if (isOutOfBounds(z))
 			return it;
-		z = mandelbrotSetIteration(z, c);
+		z = z * z + c;
 		it++;
 	}
 	return 0;
 }
 
-void computeImage(sf::Vector2f center, float range, sf::Vector2f canvasSize, sf::RenderTexture& tex, bool progress = false)
+void computeImage(sf::Vector2f center, float range, sf::Vector2f canvasSize, sf::RenderTexture& tex, int numThreads = 4, bool progress = false)
 {
-	bool* order = new bool[(int)omp_get_num_threads() + 1]{ false };
+	omp_set_num_threads(numThreads);
+
+	bool* order = new bool[numThreads + 1]{ false };
 	order[0] = true;
-
-
 
 	if(progress)
 		std::cout << "range: " << range << '\n';
@@ -49,7 +43,6 @@ void computeImage(sf::Vector2f center, float range, sf::Vector2f canvasSize, sf:
 	{
 		int prg = 0;
 		int prg_perc = 0;
-
 		unsigned short int threadNum = omp_get_thread_num();
 		sf::RenderTexture tmpTexture;
 		tmpTexture.create(canvasSize.x, canvasSize.y);
@@ -61,7 +54,7 @@ void computeImage(sf::Vector2f center, float range, sf::Vector2f canvasSize, sf:
 			{
 				prg++;
 
-				if ((int)(100 * (prg * omp_get_num_threads() / canvasSize.x)) >= prg_perc)
+				if ((int)(100 * (prg * numThreads / canvasSize.x)) >= prg_perc)
 				{
 					std::cout << "Thread "<< threadNum<< " progress: " << prg_perc << "%\n";
 					prg_perc++;

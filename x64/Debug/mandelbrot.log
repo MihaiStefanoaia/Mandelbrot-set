@@ -3,28 +3,38 @@ H:\git stuff\Mandelbrot set\HSVtoRGB.h(13,13): warning C4244: 'initializing': co
 H:\git stuff\Mandelbrot set\HSVtoRGB.h(35,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 H:\git stuff\Mandelbrot set\HSVtoRGB.h(36,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 H:\git stuff\Mandelbrot set\HSVtoRGB.h(37,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-H:\git stuff\Mandelbrot set\compute.h(55,45): warning C4244: 'argument': conversion from 'T' to 'unsigned int', possible loss of data
+H:\git stuff\Mandelbrot set\compute.h(48,45): warning C4244: 'argument': conversion from 'T' to 'unsigned int', possible loss of data
           with
           [
               T=float
           ]
-H:\git stuff\Mandelbrot set\compute.h(55,31): warning C4244: 'argument': conversion from 'T' to 'unsigned int', possible loss of data
+H:\git stuff\Mandelbrot set\compute.h(48,31): warning C4244: 'argument': conversion from 'T' to 'unsigned int', possible loss of data
           with
           [
               T=float
           ]
-H:\git stuff\Mandelbrot set\compute.h(115,26): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-H:\git stuff\Mandelbrot set\compute.h(115,23): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-H:\git stuff\Mandelbrot set\compute.h(121,46): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-H:\git stuff\Mandelbrot set\main.cpp(52,37): warning C4244: 'argument': conversion from 'T' to 'unsigned int', possible loss of data
+H:\git stuff\Mandelbrot set\compute.h(108,26): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+H:\git stuff\Mandelbrot set\compute.h(108,23): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+H:\git stuff\Mandelbrot set\compute.h(114,46): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+H:\git stuff\Mandelbrot set\startRenderer.h(168,40): warning C4244: 'argument': conversion from 'T' to 'unsigned int', possible loss of data
           with
           [
               T=float
           ]
-H:\git stuff\Mandelbrot set\main.cpp(52,23): warning C4244: 'argument': conversion from 'T' to 'unsigned int', possible loss of data
+H:\git stuff\Mandelbrot set\startRenderer.h(168,26): warning C4244: 'argument': conversion from 'T' to 'unsigned int', possible loss of data
           with
           [
               T=float
           ]
-H:\git stuff\Mandelbrot set\main.cpp(95,17): warning C4305: '*=': truncation from 'double' to 'float'
+H:\git stuff\Mandelbrot set\main.cpp(50,37): warning C4244: 'argument': conversion from 'T' to 'unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+H:\git stuff\Mandelbrot set\main.cpp(50,23): warning C4244: 'argument': conversion from 'T' to 'unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+H:\git stuff\Mandelbrot set\main.cpp(85,17): warning C4305: '*=': truncation from 'double' to 'float'
   mandelbrot.vcxproj -> H:\git stuff\Mandelbrot set\x64\Debug\mandelbrot.exe

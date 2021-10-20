@@ -147,13 +147,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="button.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="complexNumber.cpp" />
+    <ClCompile Include="textBox.cpp" />
+    <ClCompile Include="textInput.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="button.h" />
     <ClInclude Include="complexNumber.h" />
     <ClInclude Include="compute.h" />
     <ClInclude Include="HSVtoRGB.h" />
+    <ClInclude Include="startRenderer.h" />
+    <ClInclude Include="textBox.h" />
+    <ClInclude Include="textInput.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
